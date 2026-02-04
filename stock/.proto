@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package stock;
+
+service Stock {
+    rpc Add() returns () {}
+}
+
+message Stock {
+   string stock_id = 1;
+   string name = 2;
+}
