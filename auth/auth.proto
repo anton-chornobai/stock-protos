@@ -2,14 +2,14 @@ syntax = "proto3";
 
 package auth;
 
-option go_package = "github.com/anton-chornobai/stock-app/auth/gen;auth";
+option go_package = "github.com/anton-chornobai/stock-app/auth/gen;authpb";
 
 import "google/protobuf/empty.proto";
 
 service Auth {
     rpc Login(LoginRequest) returns (LoginResponse) {}
     rpc SignUp(SignupRequest) returns (SignupResponse) {} 
-    rpc Logout(LogoutRequest) returns (google.protobuf.Empty);
+    rpc Logout(LogoutRequest) returns (LogoutResponse);
     rpc UpdateProfile(UpdateProfileRequest) returns (Profile);
     rpc DeleteAccount(DeleteAccountRequest) returns (google.protobuf.Empty);
 }
@@ -31,7 +31,7 @@ message LoginRequest {
 }
 
 message LoginResponse {
-    string user_id = 1;
+    string token = 1;
 }
 
 message LogoutRequest {
@@ -51,9 +51,7 @@ message UpdateProfileRequest {
     optional string email = 3;
 }
 
-message LogoutResponse {
-    string user_id = 1;
-}
+message LogoutResponse {}
 
 message DeleteAccountRequest {
     string user_id = 1;
